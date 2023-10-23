@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+
+/*handle the screen when xoom in and out*/
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px; /* Decrease font size for smaller screens */
+    }
+
+    .nav-links li {
+        display: block; /* Stack list items on smaller screens */
+        margin: 10px 0; /* Add vertical spacing between list items */
+    }
+}
+
+.header{
+    min-height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),url(/image/berlin.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    padding-top: 20px;
+}
+.logo{
+    color: darkorange;
+    font-size: 30px;
+    font-family: Arial;
+    padding-left: 20px;
+    float: left;
+    padding-top: 20px;
+}
+.nav-links li{
+    list-style: none;
+    display: flex;
+    float: left;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+    padding: 8px;
+
+}
+.nav-links li a{
+    text-decoration: none;
+    color: wheat;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+}
+.nav-links li a:hover{
+    color: darkorange;
+}
+
+.reg-button{
+    background: white;
+    color: black;
+    float: right;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 8px 20px;
+    font-weight: bold;
+}
+.reg-button:hover{
+    transition: 0.4s ease-in-out;
+    color: darkorange;
+}
