@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TouristNest</title>
+    <link rel="stylesheet" th:href="@{/css/SignUp.css}" />
+    <script src="https://kit.fontawesome.com/e06ed31c2b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+<div class="bg-color">
+    <div class="nav-color">
+        <h2 class="logo">TouristNest</h2>
+        <div class="header">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="http://localhost:8080/homepage">HOME</a></li>
+                    <li><a href="#">COUNTRY</a></li>
+                    <li><a href="#">CITY</a></li>
+                    <li><a href="#">FOOD & DRINKS</a></li>
+                    <li><a href="#">FLIGHT</a></li>
+                    <li><a href="#">ACCOMMODATION</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="center" >
+        <h2 class="signin-title">Sign Up</h2>
+        <div class="success-message" th:if="${successMessage}" id="successMessage">
+            <p th:text="${successMessage}"></p>
+        </div>
+
+        <form th:object="${user}" action="signupPage" method="POST" name="Formfill" id="Formfill" onsubmit="return validateForm()">
+
+            <div class="text-field" >
+                <input required th:field="*{name}" type="text" placeholder="Name" name="name" id="name" >
+                <span ></span>
+                <label>Name</label>
+            </div>
+
+            <div class="text-field">
+                <input required th:field="*{email}"  type="email" placeholder="someone@gmail.com" id="email" name="email" oninput="checkEmailAvailability()">
+                <label>Email</label>
+                <span></span>
+            </div>
+
+            <div class="text-field">
+                <input required th:field="*{number}" type="number" placeholder="01632*****2" name="number">
+                <label>Number</label>
+                <span></span>
+            </div>
+            <div class="text-field">
+                <input required th:field="*{password}" type="text" placeholder="Pass@23$" name="password" id="password">
+                <label>Password</label>
+                <span></span>
+            </div>
+            <div class="text-field">
+                <input required th:field="*{confirm_password}" type="text" placeholder="Pass@23$" name="confirm_password" id="confirm_password">
+                <label>Confirm Password</label>
+                <span></span>
+            </div>
+
+            <p id="error-message"></p>
+
+            <div class="button">
+                <input class="btn" type="submit" value="Submit" id="submitButton">
+            </div>
+            <div class="signup-link">
+                Already have an account? <a href="http://localhost:8080/signin">Sign In</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+<div class="help-container"></div>
+</body>
+</html>

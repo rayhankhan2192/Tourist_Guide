@@ -1,0 +1,227 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'poppins', sans-serif;
+}
+
+/*handle the screen when xoom in and out*/
+@media screen and (max-width: 768px) {
+  body {
+      font-size: 14px; 
+  }
+
+  .nav-links li {
+      display: block; 
+      margin: 10px 0; 
+  }
+  .center{
+    display: block; 
+    margin: 10px 0; 
+  }
+}
+.bg-color{
+  background-color: white;
+  height: 100vh;
+}
+.nav-color{
+  background-color: rgb(6, 6, 121);
+  height: 10vh;
+}
+
+nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-left: 30%;
+}
+.logo{
+  color: darkorange;
+  font-size: 30px;
+  font-family: Arial;
+  padding-left: 20px;
+  float: left;
+  padding-top: 15px;
+}
+.nav-links li{
+  list-style: none;
+  display: flex;
+  float: left;
+  justify-content: right;
+  align-items: center;
+  margin-right: 10px;
+  padding: 5px;
+
+}
+.nav-links li a{
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: 0.4s ease-in-out;
+}
+.nav-links li a:hover{
+  color: darkorange;
+}
+
+.center {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  background: rgb(218, 215, 215);
+  border-radius: 10px;
+  display: block;
+}
+.center h2{
+  margin-top: 7%;
+  color: darkblue;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid gray;
+}
+.center form{
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+form .text-field{
+  position: relative;
+  border-bottom: 2px solid gray;
+  margin: 30px 0;
+  
+}
+.text-field input{
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+  font-weight:500;
+  font-family: sans-serif;
+  position: relative;
+}
+.text-field label{
+  position: absolute;
+  top: -23%;
+  left: 5px;
+  color: darkblue;
+  transform: translateY(-50%);
+  font-size: 16px;
+  font-weight:bold;
+  pointer-events: none;
+  transition: .5s;
+}
+.text-field span::before{
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: gray;
+  transition: .5s;
+  font-weight: bold;
+  transition: .5s;
+}
+.text-field input:focus ~ label,
+.text-field input:valid ~ label{
+  color: darkblue;
+}
+.text-field input:focus ~ span::before,
+.text-field input:valid ~ span::before{
+  width: 100%;
+}
+.pass{
+  margin: 0px 0 20px 5px;
+  color: black;
+  cursor: pointer;
+}
+.pass:hover{
+  text-decoration: underline;
+
+}
+
+input[type="submit"]{
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+  background: darkblue;
+  border-radius: 25px;
+  font-size: 18px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+}
+input[type="submit"]:hover{
+  color: darkorange;
+  transition: .5s;
+}
+.signup-link{
+  margin: 30px 0;
+  text-align: center;
+  font-size: 16px;
+  color: black;
+  margin-bottom: 0%;
+}
+.signup-link a{
+  color: darkblue;
+  text-decoration: none;
+}
+.signup-link a:hover{
+  text-decoration: underline;
+}
+
+.home{
+  margin: 0px 0;
+  text-align: center;
+  font-size: 16px;
+  color: black;
+  margin-bottom: 17%;
+}
+.home a{
+  color: darkblue;
+  text-decoration: none;
+}
+.home a:hover{
+  text-decoration: underline;
+}
+.home h1{
+  text-align: center;
+  font-size: 15px;
+  color: black;
+}
+
+.help-container{
+  background-color: rgb(6, 6, 121);
+  margin-top: 7%;
+  height: 50vh;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+#error-message{
+  color: red;
+  font-weight: 600;
+  position: relative;
+  padding: 5px;
+  text-align: center;
+  top: 5%;
+}
+.success-message{
+  background-color: #4CAF50; /* Green background color */
+  color: #fff; /* White text color */
+  padding: 10px; /* Padding around the message */
+  border-radius: 5px; /* Rounded corners */
+  text-align: center; /* Center the text */
+}
