@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width-device-width, initial-scale-1.0" />
+    <title>TouristNest</title>
+    <link rel="stylesheet" th:href="@{/css/otpserver.css}" />
+</head>
+<body>
+<div class="bg-color">
+    <div class="nav-color">
+        <h2 class="logo">TouristNest</h2>
+        <div class="header">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="http://localhost:8080/homepage">HOME</a></li>
+                    <li><a href="#">COUNTRY</a></li>
+                    <li><a href="#">CITY</a></li>
+                    <li><a href="#">FOOD & DRINKS</a></li>
+                    <li><a href="#">FLIGHT</a></li>
+                    <li><a href="#">ACCOMMODATION</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="otp-box">
+    <h2 class="signin-title">OTP Verification</h2>
+    <p class="text">Please don't share your OTP with others!</p>
+    <form action="otpvarification" method = "GET">
+        <div class="text-field">
+            <input type="text" required placeholder="Enter OTP Here" name="otp" id="otp" >
+            <span></span>
+        </div>
+        <div class="button">
+            <input class="btn" type="submit" value="Submit" id="submitButton">
+        </div>
+    </form>
+    <div class="success-message" th:if="${successMessage}" id="successMessage">
+        <p th:text="${successMessage}"></p>
+    </div>
+    
+    <h2 class="signin-title"></h2>
+</div>
+
+<script>
+  
+    //can not go back from signin page after the submission
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', function () {
+    history.pushState(null, null, document.URL);
+  });
+</script>
+
+</body>
+</html>
