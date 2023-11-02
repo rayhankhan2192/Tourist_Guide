@@ -6,4 +6,5 @@ public interface UserService {
 
     public User createUser(User user);
     boolean existsByEmail(String email);
+    public String sendOTPToUser(String userEmail);
 }
