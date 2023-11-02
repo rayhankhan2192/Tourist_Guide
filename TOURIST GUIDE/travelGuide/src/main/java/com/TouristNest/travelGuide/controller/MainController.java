@@ -2,6 +2,9 @@ package com.TouristNest.travelGuide.controller;
 
 import com.TouristNest.travelGuide.JPArepository.UserDataRepository;
 import com.TouristNest.travelGuide.Model.User;
+import jakarta.persistence.Id;
+import jakarta.servlet.http.HttpSession;
+import org.hibernate.annotations.Struct;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,30 +16,30 @@ import java.util.Objects;
 
 @Controller
 public class MainController{
-
     @Autowired
     private UserDataRepository userDataRepository;
 
     @Autowired
     private ImplementService userService;
+    private String otp;
+    private String mailOTP;
+
 
     @GetMapping("/homepage")
     public String homepage(){
         return "Homepage";
     }
 
-
 @PostMapping("/signupPage")
 public String createUser(@ModelAttribute @NotNull User user,
-                         @RequestParam String name,
-                         @RequestParam String email, RedirectAttributes redirectAttributes, Model model){
+                         RedirectAttributes redirectAttributes,
+                         Model model, HttpSession session){
 
     //boolean passWordStrength = password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&!])[A-Za-z\\d@#$%^&!]{6,}$");
     boolean hasUppercase = user.getPassword().matches(".*[A-Z].*");
     //boolean hasLowercase = user.getPassword().matches(".*[a-z].*");
     //boolean hasDigit = user.getPassword().matches(".*\\d.*");
     boolean hasSpecialChar = user.getPassword().matches(".*[@#$%^&+=].*");
-
 
     try{
         boolean isEmailRegistered = userService.existsByEmail(user.getEmail());
@@ -46,11 +49,17 @@ public String createUser(@ModelAttribute @NotNull User user,
                         if(hasUppercase && hasSpecialChar){
                             if(user.getPassword().length() >= 6){
                                 //userService.createUser(user);
-                                System.out.println("Successfully saved!");
                                 redirectAttributes.addFlashAttribute("successMessage",
-                                        "Successfully registered!");
-                                model.addAttribute("user", user);
-                                return "redirect:/signup";
+                                        "An OTP have been send on your Email.");
+                                //model.addAttribute("user", user);
+                                String otp = userService.sendOTPToUser(user.getEmail());
+                                System.out.println("SEND:"+otp);
+
+                                // Store user data and OTP in the session
+                                session.setAttribute("user", user);
+                                session.setAttribute("otp", otp);
+                                return "redirect:/otpserver";
+
                             }else{
                                 //redirectAttributes.addFlashAttribute("successMessage",
                                 //"Password length at least 6!");
@@ -87,6 +96,15 @@ public String createUser(@ModelAttribute @NotNull User user,
     }
     return "redirect:/signup";
 }
+
+//@RequestMapping("/otpvarification")
+//public boolean otpvarification(@RequestParam String otp){
+//    this.otp = otp;
+//    return Objects.equals(otp, mailOTP);
+//}
+//public boolean isValid(){
+//    return otpvarification(otp);
+//}
 
 
     //get the email from database and check the valid email
@@ -125,10 +143,39 @@ public String createUser(@ModelAttribute @NotNull User user,
     public String berlin(){
         return "Berlin";
     }
-    @RequestMapping()
+    @RequestMapping
     public String SignUpErrorHandle(){
         return "SignUpErrorHandle.html";
     }
+    @RequestMapping("/otpserver")
+    public String otpServer(){
+        return "OTPServer";
+    }
+//@RequestMapping("/otpvarification")
+//public String verifyOTP(@RequestParam String otp, @NotNull HttpSession session, RedirectAttributes redirectAttributes) {
+//    String storedOTP = (String) session.getAttribute("otp");
+//
+//    if (storedOTP != null && storedOTP.equals(otp)) {
+//        // OTP is valid, get the user data from the session
+//        User user = (User) session.getAttribute("user");
+//        System.out.println("2ndD controller");
+//        // Save user data to the database
+//        userService.createUser(user);
+//
+//        // Clear session attributes
+//        session.removeAttribute("user");
+//        session.removeAttribute("otp");
+//
+//        // Redirect to a success page or perform other actions
+//        redirectAttributes.addFlashAttribute("successMessage", "Registration successful!");
+//        return "redirect:/signup";
+//    } else {
+//        // OTP is invalid, show an error message and allow the user to retry
+//        redirectAttributes.addFlashAttribute("errorMessage", "Invalid OTP. Please try again.");
+//        return "redirect:/otpserver";
+//    }
+//}
+
 
 
 
