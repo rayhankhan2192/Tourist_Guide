@@ -8,16 +8,16 @@
 /*handle the screen when xoom in and out*/
 @media screen and (max-width: 768px) {
   body {
-      font-size: 14px; 
+      font-size: 14px;
   }
 
   .nav-links li {
-      display: block; 
-      margin: 10px 0; 
+      display: block;
+      margin: 10px 0;
   }
   .center{
-    display: block; 
-    margin: 10px 0; 
+    display: block;
+    margin: 10px 0;
   }
 }
 .bg-color{
@@ -64,28 +64,41 @@ nav{
   color: darkorange;
 }
 
-.center {
+.otp-box{
   position: absolute;
   top: 20%;
   left: 50%;
   transform: translate(-50%, 0%);
-  width: 500px;
+  width: 800px;
+  height: 550px;
   background: rgb(218, 215, 215);
   border-radius: 10px;
   box-sizing: border-box;
   display: block;
 }
-.center h2{
-  margin-top: 7%;
+.otp-box h2{
+  margin-top: 5%;
   color: darkblue;
   text-align: center;
   padding-top: 10px;
   padding-bottom: 40px;
-  border-bottom: 1px solid gray;
+  border-bottom: 3px solid gray;
 }
-.center form{
-  padding: 0 40px;
-  box-sizing: border-box;
+.text{
+  margin-top: 1%;
+  color: red;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  font-size: 20px;
+  font-weight: bold;
+
+}
+
+.otp-box form{
+ padding-left: 30%;
+ padding-right: 30%;
+ box-sizing: border-box;
 }
 form .text-field{
   position: relative;
@@ -94,7 +107,7 @@ form .text-field{
   
 }
 .text-field input{
-  width: 100%;
+  width: 50%;
   padding: 0 5px;
   height: 40px;
   font-size: 16px;
@@ -104,50 +117,11 @@ form .text-field{
   font-weight:500;
   font-family: sans-serif;
   position: relative;
-}
-.text-field label{
-  position: absolute;
-  top: -23%;
-  left: 5px;
-  color: darkblue;
-  transform: translateY(-50%);
-  font-size: 16px;
-  font-weight:bold;
-  pointer-events: none;
-  transition: .5s;
-}
-.text-field span::before{
-  content: '';
-  position: absolute;
-  top: 40px;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: gray;
-  transition: .5s;
   font-weight: bold;
-  transition: .5s;
+  
 }
-.text-field input:focus ~ label,
-.text-field input:valid ~ label{
-  color: darkblue;
-}
-.text-field input:focus ~ span::before,
-.text-field input:valid ~ span::before{
-  width: 100%;
-}
-.pass{
-  margin: 0px 0 20px 5px;
-  color: black;
-  cursor: pointer;
-}
-.pass:hover{
-  text-decoration: underline;
-
-}
-
 input[type="submit"]{
-  width: 100%;
+  width: 105%;
   height: 50px;
   border: 1px solid;
   background: darkblue;
@@ -162,67 +136,11 @@ input[type="submit"]:hover{
   color: darkorange;
   transition: .5s;
 }
-.signup-link{
-  margin: 30px 0;
-  text-align: center;
-  font-size: 16px;
-  color: black;
-  margin-bottom: 0%;
-}
-.signup-link a{
-  color: darkblue;
-  text-decoration: none;
-}
-.signup-link a:hover{
-  text-decoration: underline;
-}
-
-.home{
-  margin: 0px 0;
-  text-align: center;
-  font-size: 16px;
-  color: black;
-  margin-bottom: 17%;
-}
-.home a{
-  color: darkblue;
-  text-decoration: none;
-}
-.home a:hover{
-  text-decoration: underline;
-}
-.home h1{
-  text-align: center;
-  font-size: 15px;
-  color: black;
-}
-
-.help-container{
-  background-color: rgb(6, 6, 121);
-  margin-top: 7%;
-  height: 50vh;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-.error-message {
-  color: red;
-  font-size: 14px;
-  margin-top: 10px;
-}
-#error-message{
-  color: red;
-  font-weight: 600;
-  position: relative;
-  padding: 5px;
-  text-align: center;
-  top: 5%;
-}
 .success-message{
   background-color: #4CAF50; 
   color: #fff;
   padding: 10px;
   border-radius: 5px;
   text-align: center;
+  margin-top: 20px;
 }
