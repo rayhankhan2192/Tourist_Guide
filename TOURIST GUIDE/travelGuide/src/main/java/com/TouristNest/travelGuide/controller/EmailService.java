@@ -13,7 +13,7 @@ public class EmailService {
 
     public static String generateOTP() {
         Random random = new Random();
-        int otp = 100000 + random.nextInt(900000); // Generate a 6-digit OTP
+        int otp = 100000 + random.nextInt(900000);
         return String.valueOf(otp);
     }
 
@@ -21,16 +21,24 @@ public class EmailService {
         this.mailSender = mailSender;
     }
 
-    public void sendOTP(String to, String otp) {
+    public void sendOTP(String to,String name, String otp) {
         try {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             helper.setTo(to);
+            helper.setFrom("TouristNest <clay.world.max.1011@gmail.com>");
             helper.setSubject("Your OTP");
-            helper.setText("Your OTP is: " + otp);
+            //helper.setText("Dear, "+name +"!");
+            String emailContent = "Dear, "+name+" !\nWELCOME TO TOURIST NEST!\n" +
+                    "This is a one-time generated password to verify your email.\n\n" +
+                    "Your OTP is: " + otp + "\n\n" +
+                    "Do not share your OTP with others!\n" +
+                    "\n\nThis is a computer-generated email. Please do not reply!";
+
+            helper.setText(emailContent);
             mailSender.send(message);
         } catch (Exception e) {
-            // Handle the exception
+            System.out.println(e);
         }
     }
 }
