@@ -29,7 +29,7 @@
             <div class="success-message" th:if="${successMessage}" id="successMessage">
                 <p th:text="${successMessage}"></p>
             </div>
-            <form action="signupPage" method="POST" name="Formfill" id="Formfill" onsubmit="return validateForm()">
+            <form th:action="signup" method="POST" name="Formfill" id="Formfill" onsubmit="return validateForm()">
                 <div class="text-field" >
                     <input required type="text" placeholder="Name" name="name" id="name" >
                     <span ></span>
