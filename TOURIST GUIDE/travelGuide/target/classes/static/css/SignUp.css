@@ -70,9 +70,9 @@ nav{
 }
 .center {
   position: absolute;
-  top: 58%;
-  left: 53%;
-  transform: translate(-50%, -50%);
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, 0%);
   width: 500px;
   background: rgb(218, 215, 215);
   border-radius: 10px;

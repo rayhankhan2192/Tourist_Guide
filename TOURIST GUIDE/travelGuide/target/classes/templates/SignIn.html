@@ -13,7 +13,7 @@
       <div class="header">
         <nav>
           <ul class="nav-links">
-            <li><a href="http://localhost:8080/homepage">HOME</a></li>
+            <li><a href="http://localhost:8080/home/homepage">HOME</a></li>
             <li><a href="#">COUNTRY</a></li>
             <li><a href="#">CITY</a></li>
             <li><a href="#">FOOD & DRINKS</a></li>
@@ -29,7 +29,7 @@
           <div class="success-message" th:if="${successMessage}" id="successMessage">
             <p th:text="${successMessage}"></p>
         </div>
-          <form action="loginpage" method = "GET">
+          <form action="login" method = "GET">
             <div class="text-field">
               <input type="email" placeholder="someone@gmail.com" name="email" id="email" >
               <span></span>
@@ -59,8 +59,7 @@
 <div class="help-container"></div>
 
 <script>
-  
-  //can not go back from signin page after the submission
+
   history.pushState(null, null, document.URL);
   window.addEventListener('popstate', function () {
   history.pushState(null, null, document.URL);
