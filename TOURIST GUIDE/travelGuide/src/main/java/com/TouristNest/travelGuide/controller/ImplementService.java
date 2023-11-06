@@ -1,14 +1,14 @@
-package com.TouristNest.travelGuide.controller;
+package com.TouristNestApplication.TravelGuide.controller;
 
-import com.TouristNest.travelGuide.JPArepository.UserDataRepository;
-import com.TouristNest.travelGuide.JPArepository.UserService;
-import com.TouristNest.travelGuide.Model.User;
+
+import com.TouristNestApplication.TravelGuide.JPArepository.UserDataRepository;
+import com.TouristNestApplication.TravelGuide.JPArepository.UserService;
+import com.TouristNestApplication.TravelGuide.Model.User;
 import jakarta.servlet.http.HttpSession;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -35,15 +35,17 @@ public class ImplementService implements UserService {
         return false;
     }
     @Override
-    public String sendOTPToUser(String userEmail) {
+    public String sendOTPToUser(String userEmail,String name) {
         String otp = EmailService.generateOTP();
-        emailService.sendOTP(userEmail, otp);
+        emailService.sendOTP(userEmail,name, otp);
         System.out.println(otp);
         return otp;
     }
 
     @RequestMapping("/otpvarification")
-    public String verifyOTP(@RequestParam String otp, @NotNull HttpSession session, RedirectAttributes redirectAttributes) {
+    public String verifyOTP(@RequestParam String otp,
+                            @NotNull HttpSession session,
+                            RedirectAttributes redirectAttributes) {
         String storedOTP = (String) session.getAttribute("otp");
 
         if (storedOTP != null && storedOTP.equals(otp)) {

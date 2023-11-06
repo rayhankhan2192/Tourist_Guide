@@ -1,4 +1,4 @@
-package com.TouristNest.travelGuide.controller;
+package com.TouristNestApplication.TravelGuide.controller;
 
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -42,3 +42,4 @@ public class EmailService {
         }
     }
 }
+

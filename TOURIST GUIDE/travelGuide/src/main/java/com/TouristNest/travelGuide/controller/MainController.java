@@ -1,19 +1,19 @@
-package com.TouristNest.travelGuide.controller;
+package com.TouristNestApplication.TravelGuide.controller;
 
-import com.TouristNest.travelGuide.JPArepository.UserDataRepository;
-import com.TouristNest.travelGuide.Model.User;
-import jakarta.persistence.Id;
+
+import com.TouristNestApplication.TravelGuide.JPArepository.UserDataRepository;
+import com.TouristNestApplication.TravelGuide.Model.User;
 import jakarta.servlet.http.HttpSession;
-import org.hibernate.annotations.Struct;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.util.Objects;
 
-
+//@RequestMapping("/home")
 @Controller
 public class MainController{
     @Autowired
@@ -30,19 +30,19 @@ public class MainController{
         return "Homepage";
     }
 
-@PostMapping("/signupPage")
-public String createUser(@ModelAttribute @NotNull User user,
-                         RedirectAttributes redirectAttributes,
-                         Model model, HttpSession session){
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    public String createUser(@ModelAttribute @NotNull User user,
+                             RedirectAttributes redirectAttributes,
+                             Model model, HttpSession session){
 
-    //boolean passWordStrength = password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&!])[A-Za-z\\d@#$%^&!]{6,}$");
-    boolean hasUppercase = user.getPassword().matches(".*[A-Z].*");
-    //boolean hasLowercase = user.getPassword().matches(".*[a-z].*");
-    //boolean hasDigit = user.getPassword().matches(".*\\d.*");
-    boolean hasSpecialChar = user.getPassword().matches(".*[@#$%^&+=].*");
+        //boolean passWordStrength = password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&!])[A-Za-z\\d@#$%^&!]{6,}$");
+        boolean hasUppercase = user.getPassword().matches(".*[A-Z].*");
+        //boolean hasLowercase = user.getPassword().matches(".*[a-z].*");
+        //boolean hasDigit = user.getPassword().matches(".*\\d.*");
+        boolean hasSpecialChar = user.getPassword().matches(".*[@#$%^&+=].*");
 
-    try{
-        boolean isEmailRegistered = userService.existsByEmail(user.getEmail());
+        try{
+            boolean isEmailRegistered = userService.existsByEmail(user.getEmail());
             if(!isEmailRegistered){
                 if(Objects.equals(user.getPassword(),user.getConfirm_password())){
                     if(!Objects.equals(user.getPassword(), "")){
@@ -52,14 +52,12 @@ public String createUser(@ModelAttribute @NotNull User user,
                                 redirectAttributes.addFlashAttribute("successMessage",
                                         "An OTP have been send on your Email.");
                                 //model.addAttribute("user", user);
-                                String otp = userService.sendOTPToUser(user.getEmail());
+                                String otp = userService.sendOTPToUser(user.getEmail(), user.getName());
                                 System.out.println("SEND:"+otp);
-
                                 // Store user data and OTP in the session
                                 session.setAttribute("user", user);
                                 session.setAttribute("otp", otp);
                                 return "redirect:/otpserver";
-
                             }else{
                                 //redirectAttributes.addFlashAttribute("successMessage",
                                 //"Password length at least 6!");
@@ -91,45 +89,37 @@ public String createUser(@ModelAttribute @NotNull User user,
                 redirectAttributes.addFlashAttribute("successMessage",
                         "This email is already registered!");
             }
-    }catch (Exception e){
-        System.out.println("Error: "+e);
+        }catch (Exception e){
+            System.out.println("Error: "+e);
+        }
+        return "redirect:/signup";
     }
-    return "redirect:/signup";
-}
 
-//@RequestMapping("/otpvarification")
-//public boolean otpvarification(@RequestParam String otp){
-//    this.otp = otp;
-//    return Objects.equals(otp, mailOTP);
-//}
-//public boolean isValid(){
-//    return otpvarification(otp);
-//}
 
 
     //get the email from database and check the valid email
-    @RequestMapping(value = "/loginpage", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String checkEmailAvailability(@RequestParam String email, RedirectAttributes redirectAttributes) {
-       try{
-           boolean isEmailRegistered = userService.existsByEmail(email);
+        try{
+            boolean isEmailRegistered = userService.existsByEmail(email);
 
-           if(!Objects.equals(email,"")){
-               if(isEmailRegistered){
-                   return "redirect:/homepage";
-               }else{
-                   redirectAttributes.addFlashAttribute("successMessage",
-                           "This email is not registered!");
-                   return "redirect:/signin";
-               }
-           }else{
-               redirectAttributes.addFlashAttribute("successMessage",
-                       "Enter Email and Password!");
-               return "redirect:/signin";
-           }
-       }catch (Exception e){
-           System.out.println("Error: "+e);
-       }
-       return "redirect:/signin";
+            if(!Objects.equals(email,"")){
+                if(isEmailRegistered){
+                    return "redirect:/homepage";
+                }else{
+                    redirectAttributes.addFlashAttribute("successMessage",
+                            "This email is not registered!");
+                    return "redirect:/signin";
+                }
+            }else{
+                redirectAttributes.addFlashAttribute("successMessage",
+                        "Enter Email and Password!");
+                return "redirect:/signin";
+            }
+        }catch (Exception e){
+            System.out.println("Error: "+e);
+        }
+        return "redirect:/signin";
     }
     @RequestMapping("/signin")
     public String signin(){
@@ -145,87 +135,12 @@ public String createUser(@ModelAttribute @NotNull User user,
     }
     @RequestMapping
     public String SignUpErrorHandle(){
-        return "SignUpErrorHandle.html";
+        return "SignUpErrorHandle";
     }
     @RequestMapping("/otpserver")
     public String otpServer(){
         return "OTPServer";
     }
-//@RequestMapping("/otpvarification")
-//public String verifyOTP(@RequestParam String otp, @NotNull HttpSession session, RedirectAttributes redirectAttributes) {
-//    String storedOTP = (String) session.getAttribute("otp");
-//
-//    if (storedOTP != null && storedOTP.equals(otp)) {
-//        // OTP is valid, get the user data from the session
-//        User user = (User) session.getAttribute("user");
-//        System.out.println("2ndD controller");
-//        // Save user data to the database
-//        userService.createUser(user);
-//
-//        // Clear session attributes
-//        session.removeAttribute("user");
-//        session.removeAttribute("otp");
-//
-//        // Redirect to a success page or perform other actions
-//        redirectAttributes.addFlashAttribute("successMessage", "Registration successful!");
-//        return "redirect:/signup";
-//    } else {
-//        // OTP is invalid, show an error message and allow the user to retry
-//        redirectAttributes.addFlashAttribute("errorMessage", "Invalid OTP. Please try again.");
-//        return "redirect:/otpserver";
-//    }
-//}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //    @RequestMapping(value = "/addUserDataToDBMS", method = RequestMethod.POST)
-//    public String createAccount(@RequestParam String name,
-//                                @RequestParam String email,
-//                                @RequestParam int number,
-//                                @RequestParam String password,
-//                                @RequestParam String confirm_password, Model model){
-//
-//        User user = new User();
-//        user.setName(name);
-//        user.setEmail(email);
-//        user.setNumber(number);
-//        user.setPassword(password);
-//        user.setPassword(confirm_password);
-//
-//        if(Objects.equals(password, confirm_password)){
-//            userDataRepository.save(user);
-//            System.out.println("Saves!");
-//            return "redirect:/signin";
-//        }else{
-//            System.out.println("Something error");
-//        }
-//        return "";
-//    }
 
 }
