@@ -1,12 +1,12 @@
-package com.TouristNest.travelGuide.JPArepository;
+package com.TouristNestApplication.TravelGuide.JPArepository;
 
-import com.TouristNest.travelGuide.Model.User;
+import com.TouristNestApplication.TravelGuide.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserDataRepository extends JpaRepository<User, String> {
 
-
-    //boolean existsByEmail(String email);
+    User findByEmail(String email);
 }
+

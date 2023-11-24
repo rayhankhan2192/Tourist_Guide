@@ -1,10 +1,13 @@
-package com.TouristNest.travelGuide.JPArepository;
+package com.TouristNestApplication.TravelGuide.JPArepository;
 
-import com.TouristNest.travelGuide.Model.User;
+import com.TouristNestApplication.TravelGuide.Model.User;
+
+import java.util.Date;
 
 public interface UserService {
 
     public User createUser(User user);
     boolean existsByEmail(String email);
-    public String sendOTPToUser(String userEmail);
+    public String sendOTPToUser(String userEmail, String name);
 }
+
