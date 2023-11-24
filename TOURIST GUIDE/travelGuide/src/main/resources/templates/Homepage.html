@@ -3,22 +3,29 @@
   <head>
     <meta name="viewport" content="width-device-width, initial-scale-1.0" />
     <title>TouristNest</title>
-    <link rel="stylesheet" th:href="@{/css/homepage.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage.css}" />
   </head>
   <body>
     <h2 class="logo">TouristNest</h2>
     <div class="header">
       <nav>
         <ul class="nav-links">
-          <li><a href="http://localhost:8080/homepage">HOME</a></li>
+          <li><a href="http://localhost:8080/touristNest">HOME</a></li>
           <li><a href="#">COUNTRY</a></li>
           <li><a href="#">CITY</a></li>
-          <li><a href="#">FOOD & DRINKS</a></li>
           <li><a href="#">FLIGHT</a></li>
-          <li><a href="#">ACCOMMODATION</a></li>
-          <li><a href="#">ABOUT</a></li>
+          <li><a href="#">HOTEL</a></li>
         </ul>
-        <a href="http://localhost:8080/signin" class="reg-button">SIGN IN</a>
+        <div>
+              <span th:if="${user}">
+                <div class="username" th:if="${user}" id="user">
+                  <a href="http://localhost:8080/user/profile" class="nametext">[[${user.name}]]</a>
+                </div>
+              </span>
+          <span th:unless="${user}">
+                <a href="http://localhost:8080/signin" class="reg-button">SIGN IN</a>
+              </span>
+        </div>
       </nav>
       <div>
         <h2 class="text1">DISCOVERING</h2>
@@ -38,7 +45,7 @@
       <h2 class="features-title">Popular City</h2>
       <ul class="image-features">
         <li>
-          <a href="http://localhost:8080/berlin"><img src="image/berlin.jpg" />
+          <a href="http://localhost:8080/touristNest/berlin"><img src="image/berlin.jpg" />
             <span><h2>Berlin</h2></span>
           </a>
         </li>

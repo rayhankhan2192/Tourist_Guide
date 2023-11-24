@@ -1,27 +1,361 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta name="viewport" content="width-device-width, initial-scale-1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TouristNest</title>
     <link rel="stylesheet" th:href="@{/css/berlin.css}" />
+    <script src="https://kit.fontawesome.com/e06ed31c2b.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <h2 class="logo">TouristNest</h2>
-  <div class="header">
-      <nav>
-        <ul class="nav-links">
-          <li><a href="http://localhost:8080/homepage">HOME</a></li>
-          <li><a href="#features">FEATURES</a></li>
-          <li><a href="#">COUNTRY</a></li>
-          <li><a href="#">CITY</a></li>
-          <li><a href="#">FOOD & DRINKS</a></li>
-          <!-- Modified this line -->
-          <li><a href="#">FLIGHT</a></li>
-          <li><a href="#">ACCOMMODATION</a></li>
-          <li><a href="#">ABOUT</a></li>
-        </ul>
-        <a href="#" class="reg-button">Register Now</a>
-      </nav>
-  </div>
+<div class="bg-color">
+    <div class="nav-color">
+        <h2 class="logo">TouristNest</h2>
+        <div class="header">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="http://localhost:8080/touristNest">HOME</a></li>
+                    <li><a href="#">COUNTRY</a></li>
+                    <li><a href="#">CITY</a></li>
+                    <li><a href="#">FLIGHT</a></li>
+                    <li><a href="#">HOTEL</a></li>
+                </ul>
+                <div>
+              <span th:if="${user}">
+                <div class="username" th:if="${user}" id="user">
+                  <a href="http://localhost:8080/user/profile" class="nametext">[[${user.name}]]</a>
+                </div>
+              </span>
+                    <span th:unless="${user}">
+                <a href="http://localhost:8080/signin" class="reg-button">SIGN IN</a>
+              </span>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div>
+        <img class="image1" src="/image/berlin.jpg">
+        <h5 class="image-caption">The Brandenburg Gate is Berlin's most famous landmark and a must-see for all visitors. A symbol of
+            <br>German division during the Cold War, it is now a national symbol of peace and unity.</h5>
+    </div>
+
+
+    <div class="center">
+        <h2 class="signin-title">BERLIN, GERMANY</h2>
+        <div class="features">
+            <img class="image" src="/Berlin/berlin-gate.jpg" alt="Brandenburg Gate">
+            <div class="text-container">
+                <div class="place-name">Brandenburg Gate</div>
+                <div class="entry-fee">Entry Fee: Free</div>
+                <div class="entry-fee">Timings: 9 pm to 12 pm & 2 pm to 5 pm</div>
+                <div class="entry-fee">Closed: Saturdays & Sundays</div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="collapsible"><input type="checkbox" id="Brandenburg Gate">
+                <label for="Brandenburg Gate">Know more</label>
+                <div class="text"><p>Such is the twist of time! The erstwhile symbol of the divided
+                    city now stands as a symbol of unity and peace. Yet another emblem of the harsh
+                    political dictates that fell upon the people of Berlin, the Iron Curtain that
+                    mindlessly separated the East and West Berlin during the cold war. In November
+                    1989, the fall of Berlin took place followed by the monument resurrecting itself
+                    as a peace symbol that brought the two parts of the city together.
+                    As we can see, the city bears the scars of the past with a smile and this is
+                    one of them. Invariable, it is one of the most visited tourist spots in Berlin.
+                    Visit this place to experience another important historical event. See how people
+                    come with friends and families to spend time and frequent the same spot, the same
+                    patch of land that was strictly for ‘no thoroughfare.’</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="features">
+            <img class="image" src="/Berlin/Palace Gardens.jpg" >
+            <div class="text-container">
+                <div class="place-name">Charlottenburg Palace Gardens</div>
+                <div class="entry-fee">Entry Fee: Free</div>
+                <div class="entry-fee">Timings:10 am to 5 pm</div>
+                <div class="entry-fee">Closed: Mondays</div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="collapsible"><input type="checkbox" id="Charlottenburg Palace Gardens">
+                <label for="Charlottenburg Palace Gardens">Know more</label>
+                <div class="text"><p>Apart from the remains of the past that is so carefully preserved in this city,
+                    Berlin is also home to some of the most beautiful parks that are Berlin top attractions.
+                    One of them is Charlottenburg Palace Gardens, the first baroque garden in Germany. Also one
+                    of the oldest gardens that date back to 1695, it features a carp pool and sprawling lawn
+                    lined with plants and trees trimmed in a box shape and tri-color gravel. While the garden
+                    provides the right ambiance for family outings, the palace is also one of the most beautiful
+                    architectural wonders that entice the tourists. This is one of the most popular historical
+                    places to visit in Berlin in summer.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="features">
+            <img class="image" src="/Berlin/Alexanderplatz.jpg" >
+            <div class="text-container">
+                <div class="place-name">Alexanderplatz</div>
+                <div class="entry-fee">Entry Fee: Free</div>
+                <div class="entry-fee">Timings: Always open</div>
+                <div class="entry-fee">Closed: Always open</div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="collapsible"><input type="checkbox" id="Alexanderplatz">
+                <label for="Alexanderplatz">Know more</label>
+                <div class="text"><p>One of the most important and the busiest locations which happen
+                    to be a seat for numerous tourist spots as well is Alexanderplatz. Located in
+                    the Mitte District of Berlin, some of the major crowd pullers in this area
+                    include the 365-meter television Tower, the highest construction in Berlin,
+                    Alexa shopping mall, World Time Clock to name a few. This area of Berlin has
+                    been an eminent location that has been a part of all its political turmoil and
+                    social development. If you are looking for places to visit in Berlin in two days,
+                    Alexanderplatz is the place to be.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="features">
+            <img class="image" src="/Berlin/Academy Of Arts.jpg" >
+            <div class="text-container">
+                <div class="place-name">Academy Of Arts</div>
+                <div class="entry-fee">Entry Fee: Depends on the exhibition</div>
+                <div class="entry-fee">Timings: 10 am to 7 pm</div>
+                <div class="entry-fee">Closed: Always open</div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="collapsible"><input type="checkbox" id="Academy Of Arts">
+                <label for="Academy Of Arts">Know more</label>
+                <div class="text"><p>Dating back to 1697, the then-named Prussian Academy of Arts
+                    was founded by King Frederick. It came to be known as Academy of Arts after it
+                    was acquired by the Prussian treasury in 1902. One of the best places to visit
+                    in Berlin, Germany, it is one of the architectural structures in Germany that
+                    has changed many political hands and even faced bombardment during World War II,
+                    got divided into western and eastern branches during the Cold War and have managed
+                    to survive to this date to present to the world the rich art and cultural evidences
+                    that it has been able to preserve for so many hundreds of years. </p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="features">
+            <img class="image" src="/Berlin/Berlin Cathedral.jpg" >
+            <div class="text-container">
+                <div class="place-name">Berlin Cathedral</div>
+                <div class="entry-fee">Entry Fee: 10 Euros (adults), 7.50 Euros (students)</div>
+                <div class="entry-fee">Timings: 10 am to 6 pm (Monday to Friday), 10 am to 5 pm (Saturday), 12 pm to 5 pm (Sunday)</div>
+                <div class="entry-fee">Closed: Wednesday & Thursday</div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="collapsible"><input type="checkbox" id="Berlin Cathedral">
+                <label for="Berlin Cathedral">Know more</label>
+                <div class="text"><p>Located in the Museum Island, The Protestant Berlin cathedral
+                    happens to be one of the major Berlin attractions. It is one of the oldest
+                    architectural structures that was first built as a parish church in the year
+                    1465 on the banks of Spree River. It has seen the rise and fall of empires and
+                    its construction stretched till the year 1903 only to be re-opened past the GDR
+                    year in 1993. The church is made out of more than ninety sarcophagi and tombs
+                    displaying the various glorious political and religious moments etched in the
+                    mosaic of the tombs. The Dome’s organ containing in excess of 7000 pipes is one
+                    of the largest in the whole of Germany. If you’re in Germany, the cathedral is
+                    among the most gorgeous places to visit in Berlin, Germany.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="features">
+            <img class="image" src="/Berlin/Jews Of Europe.jpg" >
+            <div class="text-container">
+                <div class="place-name">Memorial To The Murdered Jews Of Europe</div>
+                <div class="entry-fee">Entry Fee: Free</div>
+                <div class="entry-fee">Timings: Always open</div>
+                <div class="entry-fee">Closed: Always open</div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="collapsible"><input type="checkbox" id="Memorial To The Murdered Jews Of Europe">
+                <label for="Memorial To The Murdered Jews Of Europe">Know more</label>
+                <div class="text"><p>Holocaust Memorial, the very mention of the term runs a chill
+                    through the spine. The evidence to the darkest period in the history of human
+                    civilization, this memorial stands in silence as a remembrance of thousands of
+                    Jewish victims who fell prey to the Nazi genocide during the Second World War.
+                    A stretch of land covered with 2771 grey rectangular blocks made of concrete and
+                    an information office that has preserved the documents, recording and
+                    biographical details of the Holocaust, the memorial is among the most visited
+                    Berlin tourist places.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="features">
+            <img class="image" src="/Berlin/Jewish Museum.jpg" >
+            <div class="text-container">
+                <div class="place-name">Jewish Museum</div>
+                <div class="entry-fee">Entry Fee: 3 Euros</div>
+                <div class="entry-fee">Timings: 10 am to 10 pm</div>
+                <div class="entry-fee">Closed: Always open</div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="collapsible"><input type="checkbox" id="Jewish Museum">
+                <label for="Jewish Museum">Know more</label>
+                <div class="text"><p>An emblem to the German-Jewish history, the Jewish Museum is
+                    also one of the remarkable places to visit in Berlin in December. Comprising of
+                    three buildings, the museum encapsulated the era of Jewish settlement in Germany
+                    that left a deep impression of the Holocaust on the psyche of the city of Berlin.
+                    Designed by one of the descendants of a family that was killed by the Nazis,
+                    named Daniel Libeskind, the lightning bolt structure (top view) and design of J
+                    ewish Museum happens to be a rare and distinguished art of architecture besides
+                    its political significance. The elaborate structure is open for the visitors to
+                    explore and wonder at the sheer work of creativity and art.
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <img class="image" src="/Berlin/Museum Island.jpg" >
+            <div class="text-container">
+                <div class="place-name">Museum Island</div>
+                <div class="entry-fee">Entry Fee: 9 Euros</div>
+                <div class="entry-fee">Timings: 1 pm to 7 pm</div>
+                <div class="entry-fee">Closed: Saturdays & Sundays</div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="collapsible"><input type="checkbox" id="Museum Island">
+                <label for="Museum Island">Know more</label>
+                <div class="text"><p>A city as old as Berlin is sure to be densely populated with
+                    museums. How else will the city preserve the centuries-old memories that have
+                    helped it to evolve the way it has. The city houses a cluster of five museums
+                    built on a small island on the Spree River. Constructed between the years 1824
+                    and 1930, the architectural monuments holds in its collection of art and
+                    historical evidence that span over thousands of years of human civilization,
+                    and your Berlin sightseeing isn’t complete without paying a visit to it.
+                    It is a treasure trove preserving a private collection of the Prussian rulers.
+                    The first and the oldest of the museums happen to be the Altes Museum. This and
+                    the other four museums were inspired by the Forum of ancient Rome and
+                    constructed with a mission to preserve artifacts and scientific evidence
+                    from time to time. A visit to this museum will prove to be an ever-enriching
+                    experience if you are searching for places to visit in Berlin in one day.
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="features">
+        <img class="image" src="/Berlin/Treptower Park.jpg">
+        <div class="text-container">
+            <div class="place-name">Treptower Park</div>
+            <div class="entry-fee">Entry Fee: Free</div>
+            <div class="entry-fee">Timings: Always open</div>
+            <div class="entry-fee">Closed: Always open</div>
+        </div>
+    </div>
+        <div class="wrapper">
+            <div class="collapsible"><input type="checkbox" id="Treptower Park">
+                <label for="Treptower Park">Know more</label>
+                <div class="text"><p>Much said about the city and remains of its glorious and
+                    tumultuous park. Let’s now pay a visit to the Spree River –
+                    the stillness of the water that balances the hustle bustle of the city that
+                    is rushing around it from dawn to dusk. Treptower Park places itself just by
+                    the banks of the Spree River and serves as an ideal spot for boating, jogging,
+                    taking a stroll or just being around. It is that fun place to visit in Berlin
+                    that one must not miss out!
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="center2">
+        <h2 class="signin-title">ACCOMMODATION IN BERLIN</h2>
+        <div class="features">
+            <img class="image" src="/Berlin/Spittelmarkt Berlin.jpg" >
+            <div class="text-container">
+                <div class="place-name">Best Western Hotel am Spittelmarkt Berlin</div>
+                <div class="text1">Location: Berlin City Center | 1.11 KM from City Center</div>
+                <div class="text2">Facilities: Coffee/Tea in lobby, WiFi, Parking, Restaurant, 24-Hour Front Desk</div>
+                <div class="text3">Cost: AVG 80$ Per person</div>
+                <div><a href="http://localhost:8080/hotel/SpittelmarktBerlin" class="DEALS">VIEW DEALS</a></div>
+
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="collapsible"><input type="checkbox" id="head1">
+                <label for="head1">Property Description</label>
+                <div class="text"><p>With a stay at Best Western Hotel am Spittelmarkt Berlin, you'll be centrally located in Berlin, within a 5-minute drive of Alexanderplatz and
+                    Checkpoint Charlie. This hotel is 1.2 mi (1.9 km) from Berlin TV Tower and 1.8 mi (3 km) from Brandenburg Gate.
+                    Take advantage of recreation opportunities such as bicycles to rent, or other amenities including complimentary wireless Internet access and concierge services.
+                    Wrap up your day with a drink at the bar/lounge. Buffet breakfasts are served on weekdays from 6:30 AM to 10:30 AM and on weekends from 7:00 AM to 10:30 AM for a fee.
+                    Featured amenities include express check-out, complimentary newspapers in the lobby, and dry cleaning/laundry services. Self parking (subject to charges) is available onsite.
+                    Stay in one of 236 guestrooms featuring flat-screen televisions. Complimentary wireless Internet access keeps you connected, and satellite programming is available for your
+                    entertainment. Bathrooms have bathtubs or showers and hair dryers. Conveniences include phones, as well as safes and electric kettles.
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <img class="image" src="/Berlin/Berlin Alexanderplatz.jpg" >
+            <div class="text-container">
+                <div class="place-name">Park Inn by Radisson Berlin Alexanderplatz</div>
+                <div class="text1">Location: Berlin City Center | 0.63 KM from City Center</div>
+                <div class="text2">Facilities: Coffee/Tea in lobby, WiFi, Parking, Restaurant, 24-Hour Front Desk</div>
+                <div class="text3">Cost: AVG 95$ Per person</div>
+                <div><a href="#" class="DEALS">VIEW DEALS</a></div>
+
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="collapsible"><input type="checkbox" id="head2">
+                <label for="head2">Property Description</label>
+                <div class="text"><p>With a stay at Park Inn by Radisson Berlin Alexanderplatz, you'll be centrally located in Berlin, within a 10-minute walk of Alexanderplatz and Berlin TV Tower. This spa hotel is 0.7 mi (1.1 km) from DDR Museum and 0.7 mi (1.1 km) from Nikolaikirche.
+                    Pamper yourself with a visit to the spa, which offers massages, body treatments, and facials. If you're looking for recreational opportunities, you'll find a health club, a sauna, and bicycles to rent. Additional features at this hotel include complimentary wireless Internet access, concierge services, and gift shops/newsstands.
+                    Enjoy international cuisine at Spagos Bar and Lounge, one of the hotel's 3 restaurants, or stay in and take advantage of the room service (during limited hours). Wrap up your day with a drink at the bar/lounge. Buffet breakfasts are available daily from 6 AM to 11:00 AM for a fee.
+                    Featured amenities include a business center, express check-out, and complimentary newspapers in the lobby. Self parking (subject to charges) is available onsite.
+                    Make yourself at home in one of the 1028 air-conditioned guestrooms. Complimentary wireless Internet access keeps you connected, and satellite programming is available
+                    for your entertainment. Bathrooms feature bathtubs or showers, complimentary toiletries, and hair dryers. Conveniences include phones, as well as safes and desks.
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <img class="image" src="/Berlin/Berlin Mitte.jpg" >
+            <div class="text-container">
+                <div class="place-name">Wyndham Garden Berlin Mitte</div>
+                <div class="text1">Location: Gesundbrunnen | 4.12 KM from City Center</div>
+                <div class="text2">Facilities: Coffee/Tea in lobby, WiFi, Parking, Restaurant, 24-Hour Front Desk</div>
+                <div class="text3">Cost: AVG 80$ Per person</div>
+                <div><a href="#" class="DEALS">VIEW DEALS</a></div>
+
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="collapsible"><input type="checkbox" id="head3">
+                <label for="head3">Property Description</label>
+                <div class="text"><p>With a stay at Wyndham Garden Berlin Mitte, you'll be centrally located in Berlin, within a 10-minute drive of Alexanderplatz and Brandenburg Gate. This hotel is 4 mi (6.4 km) from Reichstag Building and 4 mi (6.4 km) from Berlin TV Tower.
+                    Take advantage of recreation opportunities including a 24-hour fitness center and bicycles to rent. Additional features at this hotel include complimentary wireless Internet access, concierge services, and a television in a common area.
+                    Grab a bite from the snack bar/deli, or stay in and take advantage of the hotel's room service (during limited hours). Quench your thirst with your favorite drink at the bar/lounge. Buffet breakfasts are served on weekdays from 6:30 AM to 10:30 AM for a fee.
+                    Featured amenities include a 24-hour business center, express check-out, and complimentary newspapers in the lobby. Planning an event in Berlin? This hotel has facilities measuring 947 square feet (88 square meters), including a conference center. Self parking (subject to charges) is available onsite.
+                    Make yourself at home in one of the 164 guestrooms featuring minibars and flat-screen televisions. Cable television is provided for your entertainment. Private bathrooms with shower/tub combinations feature hair dryers and toothbrushes and toothpaste. Conveniences include safes and desks, and housekeeping is provided daily.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
 </body>
 </html>

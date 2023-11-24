@@ -13,14 +13,22 @@
         <div class="header">
             <nav>
                 <ul class="nav-links">
-                    <li><a href="http://localhost:8080/homepage">HOME</a></li>
+                    <li><a href="http://localhost:8080/touristNest">HOME</a></li>
                     <li><a href="#">COUNTRY</a></li>
                     <li><a href="#">CITY</a></li>
-                    <li><a href="#">FOOD & DRINKS</a></li>
                     <li><a href="#">FLIGHT</a></li>
-                    <li><a href="#">ACCOMMODATION</a></li>
-                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">HOTEL</a></li>
                 </ul>
+                <div>
+              <span th:if="${user}">
+                <div class="username" th:if="${user}" id="user">
+                   <a href="http://localhost:8080/user/profile" class="nametext">[[${user.name}]]</a>
+                </div>
+              </span>
+                    <span th:unless="${user}">
+                <a href="http://localhost:8080/signin" class="reg-button">SIGN IN</a>
+              </span>
+                </div>
             </nav>
         </div>
     </div>

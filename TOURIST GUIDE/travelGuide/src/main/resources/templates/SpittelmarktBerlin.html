@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TouristNest</title>
+    <link rel="stylesheet" th:href="@{/css/SpittelmarktBerlin.css}" />
+    <script
+      src="https://kit.fontawesome.com/e06ed31c2b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.0/css/pikaday.min.css"
+      integrity="sha384-8WOTsy1fahq1P7R8Qz9/jQJSQdXVZgjdob53S0+awq5KLSFnV8N1OZtO6tBZBdKE"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      integrity="sha384-KJ2UD5yc15geYq7VQyYPXolwp2FOYFBI8p5tIk7JrLTfuBIdo4kyB1e1WhYw6Df1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.0/pikaday.min.js"
+      integrity="sha384-CnD9lY8eKVZBkdWqFz1PK6ZVezC94fBIgScWT0k1YXDpZw1fGeEm9nTJKfDdA/Yk"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="bg-color">
+      <div class="nav-color">
+        <h2 class="logo">TouristNest</h2>
+
+        <div class="header">
+          <nav>
+            <ul class="nav-links">
+              <li><a href="http://localhost:8080/touristNest">HOME</a></li>
+              <li><a href="#">COUNTRY</a></li>
+              <li><a href="#">CITY</a></li>
+              <li><a href="#">FLIGHT</a></li>
+              <li><a href="#">HOTEL</a></li>
+            </ul>
+
+            <div>
+              <span th:if="${user}">
+                <div class="username" th:if="${user}" id="user">
+                  <a href="http://localhost:8080/user/profile" class="nametext">[[${user.name}]]</a>
+                </div>
+              </span>
+              <span th:unless="${user}">
+                <a href="http://localhost:8080/signin" class="reg-button">SIGN IN</a>
+              </span>
+            </div>
+
+          </nav>
+        </div>
+      </div>
+
+      <div class="image-cont1">
+        <img class="image1" src="/Berlin/image1.jpg" />
+      </div>
+
+      <div class="image-cont">
+        <img class="image2" src="/Berlin/image2.jpg" />
+      </div>
+      <div class="image-cont">
+        <img class="image2" src="/Berlin/image3.jpg" />
+      </div>
+      <div class="image-cont">
+        <img class="image2" src="/Berlin/image4.jpg" />
+      </div>
+      <div class="image-cont">
+        <img class="image2" src="/Berlin/image5.jpg" />
+      </div>
+      <div class="image-cont">
+        <img class="image2" src="/Berlin/images.jpg" />
+      </div>
+
+      <div class="center">
+        <h2 class="signin-title">Best Western Hotel am Spittelmarkt Berlin</h2>
+
+        <form th:action="@{/SpittelmarktBerlin}" method="POST" >
+          <h3 class="booknow">Book Now</h3>
+
+          <div class="success-message" th:if="${successMessage}" id="successMessage">
+            <p th:text="${successMessage}"></p>
+          </div>
+
+          <label for="checkin">Check-in Date:</label>
+          <input type="date" id="checkIN" name="checkIN" oninput="calculateAmount()" required />
+
+          <label for="checkout">Check-out Date:</label>
+          <input type="date" id="checkOUT" name="checkOUT" oninput="calculateAmount()" required />
+
+          <label for="checkout">Email:</label>
+          <input type="email" id="email" name="email" placeholder="Enter your registered email" required />
+
+          <label for="numberOfPersons">Number of Persons:</label>
+          <input type="number" id="numberOfPersons" name="numberOfPersons" min="0" value="0" oninput="calculateAmount()" required />
+
+          <label for="payableAmount">Payable Amount ($80 per person):</label>
+          <input type="text" id="payableAmount" min="0" value="0" name="payableAmount" readonly/>
+
+
+       <div >
+         <label for="paymentMethod">Select Payment Method:</label>
+         <select class="paymentmethod" id="paymentMethod" name="paymentMethod" required>
+           <option value=""></option>
+           <option value="VISA">VISA</option>
+           <option value="MASTER">MASTER</option>
+           <option value="AMERICANEXPRESS">AMERICAN EXPRESS</option>
+           <option value="PAYPAL">PAYPAL</option>
+         </select>
+       </div>
+          <label for="payableAmount">Enter card Number</label>
+          <input type="number" placeholder="Enter Your 16 Digit Card Number" id="cardNumber" name="cardNumber" required/>
+
+          <label for="payableAmount">Enter CVV Number</label>
+          <input type="number" placeholder="Enter CVV Number" id="cvvNumber" name="cvvNumber" required/>
+
+          <label for="payableAmount">Enter PIN Number</label>
+          <input type="number" placeholder="Enter PIN Number" id="pin" name="pin" required/>
+
+
+          <input th:if="${user}" type="hidden" id="userEmail" name="userEmail" th:value="${user.email}" />
+          <div class="button">
+            <input th:if="${user}" type="submit" value="Confirm" />
+            <input th:unless="${user}" type="submit" value="Confirm" />
+          </div>
+
+        </form>
+
+
+      </div>
+    </div>
+
+    <script>
+      var checkinPicker = new Pikaday({
+        field: document.getElementById("checkIN"),
+        format: "MM/DD/YYYY", // customize the format as needed
+        onSelect: calculateAmount,
+      });
+    
+      var checkoutPicker = new Pikaday({
+        field: document.getElementById("checkOUT"),
+        format: "MM/DD/YYYY", // customize the format as needed
+        onSelect: calculateAmount,
+      });
+    
+      document.getElementById("checkIN").addEventListener("input", calculateAmount);
+      document.getElementById("checkOUT").addEventListener("input", calculateAmount);
+      document.getElementById("numberOfPersons").addEventListener("input", calculateAmount);
+    
+      function calculateAmount() {
+        var numberOfPersons = parseInt(document.getElementById("numberOfPersons").value, 10);
+        var numberOfDays = getNumberOfDays();
+        var payableAmount = numberOfPersons * 80 * numberOfDays;
+        document.getElementById("payableAmount").value = payableAmount;
+      }
+    
+      function getNumberOfDays() {
+        var checkinDate = new Date(document.getElementById("checkIN").value);
+        var checkoutDate = new Date(document.getElementById("checkOUT").value);
+        var timeDifference = checkoutDate.getTime() - checkinDate.getTime();
+        var daysDifference = timeDifference / (1000 * 3600 * 24);
+        return daysDifference;
+      }
+    </script>
+    
+    
+  </body>
+</html>
