@@ -31,7 +31,7 @@ nav{
     align-items: center;
     justify-content: space-between;
     padding-top: 20px;
-    padding-left: 30%;
+    padding-left: 45%;
 }
 .logo{
     color: darkorange;
@@ -61,17 +61,6 @@ nav{
     color: darkorange;
 }
 
-.reg-button{
-    background: white;
-    color: black;
-    float: right;
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 15px;
-    padding: 8px 20px;
-    font-weight: bold;
-    margin-right: 30px;
-}
 .reg-button:hover{
     transition: 0.4s ease-in-out;
     color: darkorange;
@@ -198,6 +187,30 @@ margin-bottom: 10px;
     background-color: rgb(6, 6, 121);
     height: 50vh;
 }
+
+.reg-button {
+  
+    background: white;
+    color: black;
+    float: right;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 8px 20px;
+    font-weight: bold;
+    margin-right: 30px;
+  }
+  .username{
+    position:relative;
+    right: 40%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+  .nametext{
+    color: white;
+    font-size: 15px;
+    font-style: italic;
+  }
 
 html {
     scroll-behavior: smooth;
