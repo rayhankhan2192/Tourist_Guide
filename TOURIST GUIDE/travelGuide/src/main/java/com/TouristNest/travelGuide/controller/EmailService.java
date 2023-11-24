@@ -5,6 +5,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Random;
 
 @Service
@@ -16,11 +17,9 @@ public class EmailService {
         int otp = 100000 + random.nextInt(900000);
         return String.valueOf(otp);
     }
-
     public EmailService(JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
-
     public void sendOTP(String to,String name, String otp) {
         try {
             MimeMessage message = mailSender.createMimeMessage();
@@ -35,6 +34,25 @@ public class EmailService {
                     "Do not share your OTP with others!\n" +
                     "\n\nThis is a computer-generated email. Please do not reply!";
 
+            helper.setText(emailContent);
+            mailSender.send(message);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public void bookingConfirm(String to, String name, Date checkIN, Date checkOUT, int numPerson) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setTo(to);
+            helper.setFrom("TouristNest <clay.world.max.1011@gmail.com>");
+            helper.setSubject("Booking Confirmation");
+            //helper.setText("Dear, "+name +"!");
+            String emailContent = "Dear, "+name+" !\nYour booking successfully confirmed!\n\n" +
+                    "Check in: " + checkIN + "\n\n" +
+                    "Check in: " + checkOUT + "\n\n" +
+                    "Total Person: : " + numPerson + "\n" +
+                    "\n\nThis is a computer-generated email. Please do not reply!";
             helper.setText(emailContent);
             mailSender.send(message);
         } catch (Exception e) {

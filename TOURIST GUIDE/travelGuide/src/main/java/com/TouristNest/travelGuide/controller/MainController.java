@@ -1,36 +1,51 @@
 package com.TouristNestApplication.TravelGuide.controller;
 
-
+import com.TouristNestApplication.TravelGuide.JPArepository.BookingRepo;
 import com.TouristNestApplication.TravelGuide.JPArepository.UserDataRepository;
+import com.TouristNestApplication.TravelGuide.Model.Booking;
 import com.TouristNestApplication.TravelGuide.Model.User;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.model.IModel;
 
+import java.security.Principal;
 import java.util.Objects;
 
-//@RequestMapping("/home")
 @Controller
 public class MainController{
-    @Autowired
-    private UserDataRepository userDataRepository;
+
+    private String Storeemail;
+    private User userID;
 
     @Autowired
     private ImplementService userService;
-    private String otp;
-    private String mailOTP;
+    @Autowired
+    private UserDataRepository userDataRepository;
+    @Autowired
+    private BookingRepo bookingRepo;
+    @Autowired
+    private EmailService emailService;
 
-
-    @GetMapping("/homepage")
-    public String homepage(){
-        return "Homepage";
+    @GetMapping("/touristNest")
+    public String homepage(Principal principal, Model model){
+        if(principal != null){
+            //email = principal.getName();
+            //User user = userDataRepository.findByEmail(email);
+            model.addAttribute("user", userID);
+            return "Homepage";
+        }else{
+            return "Homepage";
+        }
     }
-
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    @RequestMapping(value = "/touristNest/signup", method = RequestMethod.POST)
     public String createUser(@ModelAttribute @NotNull User user,
                              RedirectAttributes redirectAttributes,
                              Model model, HttpSession session){
@@ -48,16 +63,15 @@ public class MainController{
                     if(!Objects.equals(user.getPassword(), "")){
                         if(hasUppercase && hasSpecialChar){
                             if(user.getPassword().length() >= 6){
-                                //userService.createUser(user);
-                                redirectAttributes.addFlashAttribute("successMessage",
-                                        "An OTP have been send on your Email.");
                                 //model.addAttribute("user", user);
                                 String otp = userService.sendOTPToUser(user.getEmail(), user.getName());
                                 System.out.println("SEND:"+otp);
                                 // Store user data and OTP in the session
                                 session.setAttribute("user", user);
                                 session.setAttribute("otp", otp);
-                                return "redirect:/otpserver";
+                                redirectAttributes.addFlashAttribute("successMessage",
+                                        "An OTP have been send on your Email.");
+                                return "redirect:/touristNest/signup/otpserver";
                             }else{
                                 //redirectAttributes.addFlashAttribute("successMessage",
                                 //"Password length at least 6!");
@@ -76,7 +90,7 @@ public class MainController{
                         model.addAttribute("user", user);
                         redirectAttributes.addFlashAttribute("successMessage", "Please enter password!");
                         //return "SignUpErrorHandle.html";
-                        return "redirect:/signup";
+                        return "redirect:/touristNest/signup";
                     }
                 }else{
                     //redirectAttributes.addFlashAttribute("successMessage",
@@ -92,55 +106,105 @@ public class MainController{
         }catch (Exception e){
             System.out.println("Error: "+e);
         }
-        return "redirect:/signup";
+        return "redirect:/touristNest/signup";
     }
 
-
-
-    //get the email from database and check the valid email
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String checkEmailAvailability(@RequestParam String email, RedirectAttributes redirectAttributes) {
-        try{
-            boolean isEmailRegistered = userService.existsByEmail(email);
-
-            if(!Objects.equals(email,"")){
-                if(isEmailRegistered){
-                    return "redirect:/homepage";
-                }else{
-                    redirectAttributes.addFlashAttribute("successMessage",
-                            "This email is not registered!");
-                    return "redirect:/signin";
-                }
-            }else{
-                redirectAttributes.addFlashAttribute("successMessage",
-                        "Enter Email and Password!");
-                return "redirect:/signin";
-            }
-        }catch (Exception e){
-            System.out.println("Error: "+e);
-        }
-        return "redirect:/signin";
-    }
     @RequestMapping("/signin")
-    public String signin(){
-        return "SignIn";
+    public String signin(Principal principal, Model model){
+        if(principal != null){
+            Storeemail = principal.getName();
+            userID = userDataRepository.findByEmail(Storeemail);
+            model.addAttribute("user", userID);
+            return "SignIn";
+        }else{
+            return "SignIn";
+        }
     }
-    @RequestMapping("/signup")
-    public String signup(){
-        return "SignUp";
+    @RequestMapping("/touristNest/signup")
+    public String signup(Principal principal, Model model){
+        if(principal != null){
+            model.addAttribute("user", userID);
+            return "SignUp";
+        }else{
+            return "SignUp";
+        }
     }
-    @RequestMapping("/berlin")
-    public String berlin(){
-        return "Berlin";
+    @RequestMapping("/touristNest/berlin")
+    public String berlin(Principal principal, Model model){
+        if(principal != null){
+            model.addAttribute("user", userID);
+            return "Berlin";
+        }else{
+            return "Berlin";
+        }
     }
     @RequestMapping
     public String SignUpErrorHandle(){
         return "SignUpErrorHandle";
     }
-    @RequestMapping("/otpserver")
+    @RequestMapping("/touristNest/signup/otpserver")
     public String otpServer(){
         return "OTPServer";
     }
 
+    @RequestMapping("/user/profile")
+    public String userProfile(Principal principal, Model model){
+        if(principal != null){
+            Storeemail = principal.getName();
+            userID = userDataRepository.findByEmail(Storeemail);
+            model.addAttribute("user", userID);
+            return "UserProfile";
+        }else{
+            return "UserProfile";
+        }
+    }
+    @RequestMapping("/user/home")
+    public String userProfiles(){
+        return "home";
+    }
+
+    @RequestMapping("/hotel/SpittelmarktBerlin")
+    public String SpittelmarktBerlin(Model model, Principal principal){
+        if(principal != null){
+            model.addAttribute("user", userID);
+            return "SpittelmarktBerlin";
+        }else{
+            return "SpittelmarktBerlin";
+        }
+    }
+    @PostMapping("/SpittelmarktBerlin")
+    public String processForm(@RequestParam(required = false) String email22,
+                              @RequestParam String email,
+                              RedirectAttributes redirectAttributes,
+                              Authentication authentication,
+                              @ModelAttribute @Valid Booking booking,
+                              @RequestParam String cardNumber,
+                              BindingResult bindingResult) {
+
+        // Check for validation errors
+        if (bindingResult.hasErrors()) {
+            // If there are validation errors, handle them appropriately
+            redirectAttributes.addFlashAttribute("successMessage", "Invalid input, please check the form");
+            return "redirect:/hotel/SpittelmarktBerlin";
+        }
+        User user = userDataRepository.findByEmail(email);
+        if (authentication == null || !authentication.isAuthenticated()) {
+            redirectAttributes.addFlashAttribute("successMessage", "Sign in first to confirm booking!");
+            return "redirect:/hotel/SpittelmarktBerlin";
+        } else if (!Objects.equals(Storeemail,email)) {
+            redirectAttributes.addFlashAttribute("successMessage", "Please! Use your Registered Email !");
+            return "redirect:/hotel/SpittelmarktBerlin";
+        }else if(cardNumber.length() != 16){
+            System.out.println(cardNumber.length());
+            redirectAttributes.addFlashAttribute("successMessage", "Invalid Card Number!");
+            return "redirect:/hotel/SpittelmarktBerlin";
+        } else {
+            booking.setUser(user);
+            bookingRepo.save(booking);
+            redirectAttributes.addFlashAttribute("successMessage", "Submission success!");
+            emailService.bookingConfirm(email, user.getName(), booking.getCheckIN(), booking.getCheckOUT(), booking.getNumberOfPersons());
+            return "redirect:/hotel/SpittelmarktBerlin";
+        }
+    }
 
 }
