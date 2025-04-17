@@ -1,70 +1,93 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <meta name="viewport" content="width-device-width, initial-scale-1.0" />
     <title>TouristNest</title>
     <link rel="stylesheet" th:href="@{/css/SignIn.css}" />
-    <script src="https://kit.fontawesome.com/e06ed31c2b.js" crossorigin="anonymous"></script>
-</head>
-<body>
-  <div class="bg-color">
-    <div class="nav-color">
-      <h2 class="logo">TouristNest</h2>
-      <div class="header">
-        <nav>
-          <ul class="nav-links">
-            <li><a href="http://localhost:8080/home/homepage">HOME</a></li>
-            <li><a href="#">COUNTRY</a></li>
-            <li><a href="#">CITY</a></li>
-            <li><a href="#">FOOD & DRINKS</a></li>
-            <li><a href="#">FLIGHT</a></li>
-            <li><a href="#">ACCOMMODATION</a></li>
-            <li><a href="#">ABOUT</a></li>
-          </ul>
-        </nav>
-      </div>
-      <div>
-        <div class="center">
-          <h2 class="signin-title">Sign In</h2>
-          <div class="success-message" th:if="${successMessage}" id="successMessage">
-            <p th:text="${successMessage}"></p>
+    <script
+      src="https://kit.fontawesome.com/e06ed31c2b.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="bg-color">
+      <div class="nav-color">
+        <h2 class="logo">TouristNest</h2>
+        <div class="header">
+          <nav>
+            <ul class="nav-links">
+              <li><a href="http://localhost:8080/touristNest">HOME</a></li>
+              <li><a href="#">COUNTRY</a></li>
+              <li><a href="#">CITY</a></li>
+              <li><a href="#">FLIGHT</a></li>
+              <li><a href="#">HOTEL</a></li>
+            </ul>
+            <div>
+              <span th:if="${user}">
+                <div class="username" th:if="${user}" id="user">
+                   <a href="http://localhost:8080/user/profile" class="nametext">[[${user.name}]]</a>
+                </div>
+              </span>
+              <span th:unless="${user}"> </span>
+            </div>
+          </nav>
         </div>
-          <form action="login" method = "GET">
-            <div class="text-field">
-              <input type="email" placeholder="someone@gmail.com" name="email" id="email" >
-              <span></span>
-              <label>Email</label>
-            </div>
-            <div class="text-field">
-              <input type="password" placeholder="Pass@234#" name="password" id="password">
-              <label>Password</label>
-              <span></span>
-            </div>
-            <p id="error-message"></p>
 
-            <div class="pass">Forgot Password?</div>
-            <input type="submit" value="Login" id="submitButton">
-            <div class="signup-link">
-              Don't have an account? <a href="http://localhost:8080/signup">Sign Up</a>
+        <div>
+          <div class="center">
+            <h2 class="signin-title">Sign In</h2>
+
+            <div th:if="${param.error != null}" class="alert alert-danger">
+              <p class="success-message" th:text="${'Invalid email or password! ' + param.error}"></p>
             </div>
-            <div class="home">
-              <h1>OR</h1>
-              Back to the home? <a href="http://localhost:8080/homepage">Home</a>
-            </div>
-          </form>
+
+
+            <form action="/login" method="post">
+              <div class="text-field">
+                <input
+                  type="email"
+                  placeholder="someone@gmail.com"
+                  name="email"
+                  id="email"
+                />
+                <span></span>
+                <label>Email</label>
+              </div>
+              <div class="text-field">
+                <input
+                  type="password"
+                  placeholder="Pass@234#"
+                  name="password"
+                  id="password"
+                />
+                <label>Password</label>
+                <span></span>
+              </div>
+              <p id="error-message"></p>
+
+              <div class="pass">Forgot Password?</div>
+              <input type="submit" value="Login" id="submitButton" />
+              <div class="signup-link">
+                Don't have an account?
+                <a href="http://localhost:8080/touristNest/signup">Sign Up</a>
+              </div>
+              <div class="home">
+                <h1>OR</h1>
+                Back to the home?
+                <a href="http://localhost:8080/touristNest">Home</a>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-<div class="help-container"></div>
+    <div class="help-container"></div>
 
-<script>
-
-  history.pushState(null, null, document.URL);
-  window.addEventListener('popstate', function () {
-  history.pushState(null, null, document.URL);
-});
-</script>
-  
-</body>
+    <script>
+      <!--  history.pushState(null, null, document.URL);-->
+      <!--  window.addEventListener('popstate', function () {-->
+      <!--  history.pushState(null, null, document.URL);-->
+      <!--});-->
+    </script>
+  </body>
 </html>

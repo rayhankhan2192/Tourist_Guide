@@ -8,16 +8,16 @@
 /*handle the screen when xoom in and out*/
 @media screen and (max-width: 768px) {
   body {
-      font-size: 14px; 
+      font-size: 14px;
   }
 
   .nav-links li {
-      display: block; 
-      margin: 10px 0; 
+      display: block;
+      margin: 10px 0;
   }
   .center{
-    display: block; 
-    margin: 10px 0; 
+    display: block;
+    margin: 10px 0;
   }
 }
 .bg-color{
@@ -34,7 +34,7 @@ nav{
   align-items: center;
   justify-content: space-between;
   padding-top: 20px;
-  padding-left: 30%;
+  padding-left: 45%;
 }
 .logo{
   color: darkorange;
@@ -63,7 +63,10 @@ nav{
 .nav-links li a:hover{
   color: darkorange;
 }
-
+.name{
+  background-color: black;
+  font-weight: bold;
+}
 .center {
   position: absolute;
   top: 20%;
@@ -225,4 +228,15 @@ html {
   padding: 10px;
   border-radius: 5px;
   text-align: center;
+}
+.username{
+  position:relative;
+  right: 40%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+.nametext{
+  color: white;
+  font-size: 15px;
+  font-style: italic;
 }

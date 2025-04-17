@@ -1,6 +1,6 @@
-package com.TouristNestApplication.TravelGuide.JPArepository;
+package com.TouristNest.travelGuide.JPArepository;
 
-import com.TouristNestApplication.TravelGuide.Model.User;
+import com.TouristNest.travelGuide.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

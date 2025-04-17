@@ -1,9 +1,9 @@
-package com.TouristNestApplication.TravelGuide.controller;
+package com.TouristNest.travelGuide.controller;
 
-import com.TouristNestApplication.TravelGuide.JPArepository.BookingRepo;
-import com.TouristNestApplication.TravelGuide.JPArepository.UserDataRepository;
-import com.TouristNestApplication.TravelGuide.Model.Booking;
-import com.TouristNestApplication.TravelGuide.Model.User;
+import com.TouristNest.travelGuide.JPArepository.BookingRepo;
+import com.TouristNest.travelGuide.JPArepository.UserDataRepository;
+import com.TouristNest.travelGuide.Model.Booking;
+import com.TouristNest.travelGuide.Model.User;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.jetbrains.annotations.NotNull;
@@ -14,7 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.thymeleaf.model.IModel;
+//import org.thymeleaf.model.IModel;
 
 import java.security.Principal;
 import java.util.Objects;

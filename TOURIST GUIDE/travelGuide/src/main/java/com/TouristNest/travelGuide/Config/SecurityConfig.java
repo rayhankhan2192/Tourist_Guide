@@ -1,4 +1,4 @@
-package com.TouristNestApplication.TravelGuide.Config;
+package com.TouristNest.travelGuide.Config;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;

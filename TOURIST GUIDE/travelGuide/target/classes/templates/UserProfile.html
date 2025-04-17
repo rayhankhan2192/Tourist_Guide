@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TouristNest</title>
+    <link rel="stylesheet" th:href="@{/css/userProfile.css}" />
+    <script src="https://kit.fontawesome.com/e06ed31c2b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="bg-color">
+    <div class="nav-color">
+        <h2 class="logo">TouristNest</h2>
+        <div class="header">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="http://localhost:8080/touristNest">HOME</a></li>
+                    <li><a href="#">COUNTRY</a></li>
+                    <li><a href="#">CITY</a></li>
+                    <li><a href="#">FLIGHT</a></li>
+                    <li><a href="#">HOTEL</a></li>
+                </ul>
+                <div>
+                    <span th:if="${user}">
+                <div class="username" th:if="${user}" id="userr">
+                   <a href="http://localhost:8080/user/profile" class="nametext">[[${user.name}]]</a>
+                </div>
+                </span>
+                    <span th:unless="${user}">
+                <a href="http://localhost:8080/signin" class="reg-button">SIGN IN</a>
+              </span>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="otp-box">
+    <h2>Welcome to User Profile</h2>
+
+    <div class="success-message" th:if="${user}" id="user">
+        <h2>Dear [[${user.name}]]</h2>
+        <h2>You are successfully login</h2>
+    </div>
+    <form th:action="@{/logout}" method="post" id="logoutForm">
+        <input class="reg-button" type="submit" value="Logout" />
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.TouristNestApplication.TravelGuide.Model;
+package com.TouristNest.travelGuide.Model;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -8,15 +8,18 @@ import lombok.Getter;
 @Data
 @Getter
 public class User {
-    private String name;
+    
     @Id
-    private  String email;
-    private  int number;
-    private String password;
-    //@Transient
-    private String confirm_password;
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)  // Auto-generate id
+    // private Long id;
 
-    //private Role role;
+    @Column(unique = true)
+    private String email;
+
+    private String name;
+    private int number;
+    private String password;
+    private String confirm_password;
     private String role;
 
     public boolean equals(String password, String confirmPassword) {

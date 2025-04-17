@@ -1,4 +1,4 @@
-package com.TouristNestApplication.TravelGuide.Model;
+package com.TouristNest.travelGuide.Model;
 
 import jakarta.persistence.*;
 import lombok.Data;

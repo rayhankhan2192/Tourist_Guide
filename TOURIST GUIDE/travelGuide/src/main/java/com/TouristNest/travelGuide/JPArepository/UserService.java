@@ -1,8 +1,8 @@
-package com.TouristNestApplication.TravelGuide.JPArepository;
+package com.TouristNest.travelGuide.JPArepository;
 
-import com.TouristNestApplication.TravelGuide.Model.User;
+import com.TouristNest.travelGuide.Model.User;
 
-import java.util.Date;
+// import java.util.Date;
 
 public interface UserService {
 

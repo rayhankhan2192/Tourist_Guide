@@ -1,0 +1,323 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'poppins', sans-serif;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 14px;
+  
+  }
+
+
+  nav {
+    padding-left: 10px;
+  }
+
+  .nav-links li {
+    margin-right: 5px;
+    padding: 3px;
+  }
+
+  .reg-button {
+    margin-right: 10px;
+  }
+
+  .center,
+  .image1,
+  .center2 {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+
+  .center,
+  .center2 {
+    position: relative;
+    left: auto;
+    transform: translate(0%, 0%);
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .text-container {
+    max-width: 100%;
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .nav {
+    padding-left: 15px;
+  }
+}
+
+.bg-color {
+  background-color: white;
+  height: 100vh;
+}
+
+.nav-color {
+  background-color: rgb(6, 6, 121);
+  height: 10vh;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-left: 45%;
+}
+
+.logo {
+  color: darkorange;
+  font-size: 30px;
+  font-family: Arial;
+  padding-left: 20px;
+  float: left;
+  padding-top: 15px;
+}
+
+.nav-links li {
+  list-style: none;
+  display: flex;
+  float: left;
+  justify-content: right;
+  align-items: center;
+  margin-right: 10px;
+  padding: 5px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: 0.4s ease-in-out;
+}
+
+.nav-links li a:hover {
+  color: darkorange;
+}
+
+.reg-button:hover {
+  transition: 0.4s ease-in-out;
+  color: darkorange;
+}
+
+
+.image-caption {
+  padding-left: 2%;
+}
+
+.center {
+  position: absolute;
+  top: 14%;
+  left: 80%;
+  transform: translate(-50%, 0%);
+  width: 40%;
+  height: 140%;
+  max-width: 100%;
+  background: whitesmoke;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: block;
+}
+.center h2 {
+  font-family: Georgia;
+  color: black;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid gray;
+  font-size: 25px;
+}
+form {
+  text-align: 0;
+}
+.booknow{
+  font-family: Georgia;
+  color: white;
+  background-color: darkblue;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;;
+  font-size: 25px;
+}
+label {
+  margin-top: 2%;
+  display: block;
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+
+input[type="date"],input[type="email"], input[type="number"], input[type="text"] {
+  margin-left: 0%;
+  width: 70%;
+  padding: 8px;
+  margin-bottom: 16px;
+}
+
+input[type="submit"] {
+  background-color: darkblue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 30%;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+
+
+.center2 {
+  position: absolute;
+  padding-top: 5%;
+  left: 2%;
+  transform: translate(0%, 0%);
+  width: 48%;
+  height: auto;
+  max-width: 100%;
+  background: whitesmoke;
+  border-radius: 2px;
+  box-sizing: border-box;
+  display: block;
+}
+.image1 {
+  height: 70%;
+  width: 55%;
+  display: block;
+}
+.image2 {
+  height: 20%;
+  width: 15%;
+  display: block;
+}
+
+.image-cont1{
+  padding-top: 2%;
+  padding-left: 2%;
+  width: 50%px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 10px;
+  margin-bottom: 10px;
+ }
+
+.image2{
+  width: 150px;
+  display: block;
+  margin-left: 18%;
+}
+
+.image-cont{
+width: 154px;
+display: inline-block;
+vertical-align: top;
+margin-right: 8px;
+margin-bottom: 10px;
+}
+
+.reg-button {
+  
+  background: white;
+  color: black;
+  float: right;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 15px;
+  padding: 8px 20px;
+  font-weight: bold;
+  margin-right: 30px;
+}
+.username{
+  position:relative;
+  right: 40%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+.nametext{
+  color: white;
+  font-size: 15px;
+  font-style: italic;
+}
+
+.wrapper {
+  display: flex;
+  padding-top: 2%;
+  justify-content: center;
+  width: 100%;
+}
+
+.collapsible {
+  max-width: 200%;
+  overflow: hidden;
+  font-weight: 500;
+}
+
+.collapsible input {
+  display: none;
+}
+
+.collapsible input:checked~label:after {
+  transform: rotate(90deg);
+}
+
+.collapsible label {
+  position: relative;
+  font-weight: 600;
+  background: white;
+  box-shadow: rgb(230, 224, 224);
+  color: #1c1c6b;
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+  z-index: 1;
+  font-size: 22px;
+  transition: 0.4s ease-in-out;
+}
+
+.collapsible label:after {
+  content: "";
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 18px;
+  height: 18px;
+  background: url(arrow.svg) no-repeat 0 0;
+  transform: all 0.3s each;
+}
+
+.collapsible label:hover {
+  color: darkorange;
+}
+
+
+.paymentmethod{
+  margin-left: 0%;
+  width: 70%;
+  padding: 8px;
+  margin-bottom: 16px;
+}
+
+
+.success-message{
+  margin-top: 2%;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px; 
+  border-radius: 5px; 
+  text-align: center;
+  width: 70%;
+}

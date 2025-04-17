@@ -1,7 +1,7 @@
-package com.TouristNestApplication.TravelGuide.Config;
+package com.TouristNest.travelGuide.Config;
 
-import com.TouristNestApplication.TravelGuide.JPArepository.UserDataRepository;
-import com.TouristNestApplication.TravelGuide.Model.User;
+import com.TouristNest.travelGuide.JPArepository.UserDataRepository;
+import com.TouristNest.travelGuide.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

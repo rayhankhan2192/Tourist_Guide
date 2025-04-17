@@ -1,6 +1,6 @@
-package com.TouristNestApplication.TravelGuide.Config;
+package com.TouristNest.travelGuide.Config;
 
-import com.TouristNestApplication.TravelGuide.Model.User;
+import com.TouristNest.travelGuide.Model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
